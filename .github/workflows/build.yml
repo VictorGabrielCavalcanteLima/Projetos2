@@ -15,15 +15,11 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Instalar SDK do Android e Build Tools
-        uses: android-actions/setup-android@v2
-        with:
-          packages: 'platforms;android-34'
+      - name: Criar estrutura Gradle básica
+        run: |
+          gradle wrapper
 
-      - name: Dar permissão ao Gradle
-        run: chmod +x gradlew
-
-      - name: Gerar Debug APK
+      - name: Compilar APK em modo Debug
         run: ./gradlew assembleDebug
 
       - name: Guardar o APK gerado
